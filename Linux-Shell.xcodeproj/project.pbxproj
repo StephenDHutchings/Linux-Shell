@@ -61,9 +61,9 @@
 		D98B99BD241A98D400749F71 /* Linux-Shell */ = {
 			isa = PBXGroup;
 			children = (
+				D98B99C6241A992900749F71 /* Main.cpp */,
 				D98B99C7241A992900749F71 /* Functions.cpp */,
 				D98B99C5241A992900749F71 /* Functions.h */,
-				D98B99C6241A992900749F71 /* Main.cpp */,
 				D98B99C8241A992900749F71 /* README.md */,
 			);
 			path = "Linux-Shell";
