@@ -4,16 +4,11 @@
 #include <vector>
 #include <string>
 #include <queue>
+#include "CommandObject.h"
 
 using namespace std;
 
-struct CommandObject {
-    string main_command;
-    vector<string> options, arguments;
-};
-
-queue<string> PipeSeparator(string input_string);
-queue<CommandObject> InputParser(string typed_string);
-
+queue<string> PipeSeparator(string input_string); // Splits piped inputs into separate commands
+queue<CommandObject> InputParser(string typed_string); // Parses inputs, outputing a series of command objects to execute
 
 #endif

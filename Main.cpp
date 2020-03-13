@@ -3,6 +3,5 @@
 
 int main()
 {
-    PipeSeparator("test test | jf | ok");
-    
+    return 0;
 }

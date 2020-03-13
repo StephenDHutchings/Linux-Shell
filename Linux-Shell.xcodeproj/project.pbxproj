@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D98B99C9241A992900749F71 /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D98B99C6241A992900749F71 /* Main.cpp */; };
 		D98B99CA241A992900749F71 /* Functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D98B99C7241A992900749F71 /* Functions.cpp */; };
+		D98B99CC241C313000749F71 /* CommandObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D98B99CB241C313000749F71 /* CommandObject.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +30,8 @@
 		D98B99C6241A992900749F71 /* Main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Main.cpp; sourceTree = SOURCE_ROOT; };
 		D98B99C7241A992900749F71 /* Functions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Functions.cpp; sourceTree = SOURCE_ROOT; };
 		D98B99C8241A992900749F71 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		D98B99CB241C313000749F71 /* CommandObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CommandObject.cpp; sourceTree = SOURCE_ROOT; };
+		D98B99CF241C320300749F71 /* CommandObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandObject.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +67,8 @@
 				D98B99C6241A992900749F71 /* Main.cpp */,
 				D98B99C7241A992900749F71 /* Functions.cpp */,
 				D98B99C5241A992900749F71 /* Functions.h */,
+				D98B99CB241C313000749F71 /* CommandObject.cpp */,
+				D98B99CF241C320300749F71 /* CommandObject.h */,
 				D98B99C8241A992900749F71 /* README.md */,
 			);
 			path = "Linux-Shell";
@@ -127,6 +132,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D98B99CA241A992900749F71 /* Functions.cpp in Sources */,
+				D98B99CC241C313000749F71 /* CommandObject.cpp in Sources */,
 				D98B99C9241A992900749F71 /* Main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
