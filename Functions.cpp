@@ -36,7 +36,7 @@ queue<CommandObject> InputParser(string typed_string) {
      typed_string: string of commands that the user has typed
      
      output:
-     queue of CommandObject objects, each representing a command that needs to run
+     commands: queue of CommandObject objects, each representing a command that needs to run
      */
     queue<CommandObject> commands;
     queue<string> piped_commands = PipeSeparator(typed_string);
