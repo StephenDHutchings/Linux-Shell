@@ -17,7 +17,8 @@ using namespace std;
 struct CommandObject {
     string main_command;
     vector<string> arguments;
-    bool output_to_file;
+    bool input_from_file, output_to_file;
+    string filename;
     
     // Constructors
     CommandObject();

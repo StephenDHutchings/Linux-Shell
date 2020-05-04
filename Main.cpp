@@ -11,27 +11,18 @@
 
 queue<CommandObject> commands;
 string user_input;
-char* modified_user_input;
 CommandObject a_command;
 
 int main()
 {
-
     user_input = StartShell();
-    
-    a_command.main_command = user_input;
-    
-    commands.push(a_command);
-    
-    BuiltInCommands(commands);
-    
-    if(user_input == "tutorial"){ //|| "tutorial"){
+   
+    if(user_input == "tutorial" || user_input == "Tutorial"){
         TutorialStart();}
     
     else{
-        
+        Shell();
     }
-
-   
+    
     return 0;
 }
