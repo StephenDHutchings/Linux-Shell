@@ -41,7 +41,7 @@ queue<CommandObject> InputParser(string typed_string) {
     queue<CommandObject> commands;
     queue<string> piped_commands = PipeSeparator(typed_string);
     
-    for (int i = 0; i < piped_commands.size(); i++) {
+    while (!piped_commands.empty()) {
         commands.push(CommandObject(piped_commands.front()));
         piped_commands.pop();
     }

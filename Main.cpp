@@ -8,6 +8,6 @@ using namespace std;
 
 int main()
 {
-    CommandObject("blaaaaaa -a -f ff> output");
+    InputParser("test 1|test2 -a -f|test3 > blah|test4 -1 < yaa");
     return 0;
 }

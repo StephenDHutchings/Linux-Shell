@@ -24,7 +24,7 @@ CommandObject::CommandObject() {
     filename = "";
 }
 
-CommandObject::CommandObject(string input_command) {
+CommandObject::CommandObject(string input_command) : CommandObject() {
     /*
      Creates the CommandObject from a given input string representing a full command (command and arguments) as it would be typed in the terminal.
      
