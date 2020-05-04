@@ -119,12 +119,19 @@ void Shell()
     string user_input;
     queue<CommandObject> commands;
     CommandObject a_command;
+    bool done = false;
     
-    cout << "> "; 
-    getline(cin, user_input);
-    commands = InputParser(user_input);
-    a_command = commands.front();
-    TheCommands(commands);
+    while (!done) {
+        cout << "> ";
+        getline(cin, user_input);
+        if (user_input != "exit" && user_input != "Exit"){
+            commands = InputParser(user_input);
+            a_command = commands.front();
+            TheCommands(commands);
+        } else {
+            done = true;
+        }
+    }
     
     return;
 }
