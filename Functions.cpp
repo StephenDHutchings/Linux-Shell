@@ -10,6 +10,7 @@
 #include <sys/param.h>
 #include <stdlib.h>
 #include <sys/wait.h>
+#include <array>
 
 using namespace std;
 
@@ -53,6 +54,34 @@ queue<CommandObject> InputParser(string typed_string) {
     }
     
     return commands;
+}
+
+string FindBinary(const char* command) {
+    /*
+     Takes a command string that the user typed (eg: ls) and returns the path of the corresponding binary (eg: /bin/ls)
+     
+     written with help of: https://stackoverflow.com/questions/478898/how-do-i-execute-a-command-and-get-the-output-of-the-command-within-c-using-po
+     
+     inputs:
+     command: the main command portion of a user's input
+     
+     output:
+     file_path: string with the path to the binary to execute
+     */
+    string file_path;
+    array<char, 128> buffer;
+    unique_ptr<FILE, decltype(&pclose)> pipe(popen(command, "r"), pclose);
+    
+    if (!pipe) {
+        throw runtime_error("popen() failed. Can't get binary location.");
+    }
+    
+    while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
+        file_path += buffer.data();
+    }
+    
+    file_path.erase(remove(file_path.begin(), file_path.end(), '\n'), file_path.end());
+    return file_path;
 }
 
 void TheCommands(queue<CommandObject>& commands){
@@ -121,10 +150,12 @@ void Shell()
     while (!done) {
         cout << "> ";
         getline(cin, user_input);
-        if (user_input != "exit" && user_input != "Exit"){
+        if (user_input != "exit" && user_input != "Exit" && user_input != ""){
             commands = InputParser(user_input);
             a_command = commands.front();
             TheCommands(commands);
+        } else if (user_input == "") {
+            continue;
         } else {
             done = true;
         }

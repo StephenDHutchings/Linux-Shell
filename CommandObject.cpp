@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include "CommandObject.h"
+#include "Functions.h"
 
 #include <iostream>
 #include <vector>
@@ -60,19 +61,10 @@ CommandObject::CommandObject(string input_command) : CommandObject() {
     // ^^^^ Vector of individual words ^^^^
     arguments = input_words; // execve expects the command + arguments in the vector, not just the arguments. No point in removing the first word.
     
-    /*
-    // Building main command absolute filepath
-    if (arguments[0].substr(0, 2) == "./") { // command referring to executable in working directory
-        string working_directory = __fs::filesystem::current_path();
-        stringstream filepath_stream;
-        
-        working_directory = working_directory.substr(1, working_directory.length() - 2);
-        filepath_stream << working_directory << arguments[0].substr(1, arguments[0].length() - 1);
-        main_command = filepath_stream.str();
-    } else {  // built-in, use /bin/ for base path */
-        stringstream filepath_stream;
-        
-        filepath_stream << "/bin/" << arguments[0];
-        main_command = filepath_stream.str();
-    
+    // Finding location of binary to execute
+    stringstream command_stream;
+    command_stream << "which " << arguments[0];
+    char command_array[command_stream.str().length()];
+    strcpy(command_array, command_stream.str().c_str());
+    main_command = FindBinary((char *) command_array);
 }

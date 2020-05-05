@@ -10,6 +10,7 @@ using namespace std;
 
 queue<string> PipeSeparator(string input_string); // Splits piped inputs into separate commands
 queue<CommandObject> InputParser(string typed_string); // Parses inputs, outputing a series of command objects to execute
+string FindBinary(const char* command); // Finds corresponding binary to a user's command input
 void TheCommands(queue<CommandObject>& user_input);
 string StartShell();
 void TutorialStart();

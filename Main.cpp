@@ -16,13 +16,13 @@ CommandObject a_command;
 int main()
 {
     user_input = StartShell();
-   
+
     if(user_input == "tutorial" || user_input == "Tutorial"){
         TutorialStart();}
-    
+
     else{
         Shell();
     }
-    
+
     return 0;
 }
