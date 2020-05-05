@@ -15,5 +15,6 @@ string StartShell();
 void TutorialStart();
 void TutorialContinue();
 void Shell();
+void HelpCommand();
 
 #endif
