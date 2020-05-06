@@ -240,7 +240,7 @@ void Shell()
 }
 
 void TutorialContinue(){
-    /*
+       /*
      * This function is the meat and potatoes of the tutorial
      * It demonstrates and has the user go through basic commands to understand them 
      */
@@ -263,13 +263,15 @@ void TutorialContinue(){
     getline(cin, user_input);
  
     while(user_input != "whoami"){
+        
+        if(user_input == "exit")
+        {
+        return;
+        }
+        
         cout << "> Please enter the command whoami" << endl << "> ";
         getline(cin, user_input);}
      
-    if(user_input == "exit")
-    {
-        return;
-    }
     
     commands = InputParser(user_input);
     TheCommands(commands);
@@ -284,13 +286,14 @@ void TutorialContinue(){
     getline(cin, user_input);
  
     while(user_input != "pwd"){
+        
+        if(user_input == "exit")
+        {
+        return;
+        }
+                
         cout << "> Please enter the command pwd" << endl << "> ";
         getline(cin, user_input);}
-     
-    if(user_input == "exit")
-    {
-        return;
-    }
     
     commands = InputParser(user_input);
     TheCommands(commands);
@@ -303,19 +306,19 @@ void TutorialContinue(){
     cout << "> This tutorial will show the basic command, as well as an example with arguments" << endl;
     cout << "> To see the files and subdirectories of the current directory, enter the command ls" << endl << "> ";
     
-    user_input = "";
+    user_input = " ";
     
     getline(cin, user_input);
     
     while(user_input != "ls"){
-    cout << "> Please enter the command ls" << endl << "> ";
-    getline(cin, user_input);}
-
-       
+              
     if(user_input == "exit")
     {
         return;
     }
+    
+    cout << "> Please enter the command ls" << endl << "> ";
+    getline(cin, user_input);}
     
     commands = InputParser(user_input);
     TheCommands(commands);
@@ -339,14 +342,14 @@ void TutorialContinue(){
     getline(cin, user_input);
     
     while(user_input != "ls -l"){
-    cout << "> Please enter the command ls -l" << endl << "> ";
-    getline(cin, user_input);}
-
-       
+                
     if(user_input == "exit")
     {
         return;
     }
+    
+    cout << "> Please enter the command ls -l" << endl << "> ";
+    getline(cin, user_input);}
     
     commands = InputParser(user_input);
     TheCommands(commands);
@@ -361,14 +364,14 @@ void TutorialContinue(){
     getline(cin, user_input);
     
     while(user_input != "ls -l -r"){
-    cout << "> Please enter the command ls -l -r" << endl << "> ";
-    getline(cin, user_input);}
-
-       
+        
     if(user_input == "exit")
     {
         return;
     }
+    
+    cout << "> Please enter the command ls -l -r" << endl << "> ";
+    getline(cin, user_input);}
     
     commands = InputParser(user_input);
     TheCommands(commands);
@@ -385,14 +388,15 @@ void TutorialContinue(){
     getline(cin, user_input);
     
     while(user_input != "touch sample.txt"){
-    cout << "> Please enter the command touch sample.txt" << endl << "> ";
-    getline(cin, user_input);}
-
-       
+              
     if(user_input == "exit")
     {
         return;
     }
+    
+    cout << "> Please enter the command touch sample.txt" << endl << "> ";
+    
+    getline(cin, user_input);}
     
     commands = InputParser(user_input);
     TheCommands(commands);
@@ -404,15 +408,15 @@ void TutorialContinue(){
     getline(cin, user_input);
     
     while(user_input != "ls"){
-    cout << "> Please enter the command ls" << endl << "> ";
-    getline(cin, user_input);}
-
-       
+              
     if(user_input == "exit")
     {
         return;
     }
     
+    cout << "> Please enter the command ls" << endl << "> ";
+    getline(cin, user_input);}
+
     commands = InputParser(user_input);
     TheCommands(commands);
     
@@ -445,13 +449,15 @@ void TutorialContinue(){
         getline(cin, user_input);
  
     while(user_input != "pwd"){
+              
+        if(user_input == "exit")
+        {
+        return;
+        }
+        
         cout << "> Please enter the command pwd" << endl << "> ";
         getline(cin, user_input);}
      
-    if(user_input == "exit")
-    {
-        return;
-    }
     
     commands = InputParser(user_input);
     TheCommands(commands);
