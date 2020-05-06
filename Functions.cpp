@@ -106,7 +106,7 @@ void TheCommands(queue<CommandObject>& commands){
     
     args[a_command.arguments.size()] = NULL;
     
-    if(a_command.main_command == "/bin/cd"){
+    if(a_command.main_command == "/usr/bin/cd"){
             chdir(args[1]);
             return;
         }
@@ -163,7 +163,7 @@ void Shell()
     while (!done) {
         cout << "> ";
         getline(cin, user_input);
-        if (user_input != "exit" && user_input != "Exit"){
+        if (user_input != "exit" && user_input != "Exit" && user_input != ""){
             
             if(user_input == "help" || user_input == "Help"){
                 HelpCommand();
@@ -171,9 +171,12 @@ void Shell()
             
             else{
                 commands = InputParser(user_input);
-                a_command = commands.front();
+//                a_command = commands.front();
                 TheCommands(commands);
             }
+        } else if(user_input == "") {
+            cin.clear();
+            continue;
         }
         
         else {
