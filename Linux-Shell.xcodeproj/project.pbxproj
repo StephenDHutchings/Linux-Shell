@@ -8,11 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		D96030E52460BD4A00BB0C45 /* CommandObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D96030E32460BD4A00BB0C45 /* CommandObject.cpp */; };
+		D96030F024627C3800BB0C45 /* in.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = D96030EE24627C3800BB0C45 /* in.txt */; };
+		D96030F124627C3800BB0C45 /* plants in CopyFiles */ = {isa = PBXBuildFile; fileRef = D96030EF24627C3800BB0C45 /* plants */; };
 		D98B99C9241A992900749F71 /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D98B99C6241A992900749F71 /* Main.cpp */; };
 		D98B99CA241A992900749F71 /* Functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D98B99C7241A992900749F71 /* Functions.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		D96030ED24627C1100BB0C45 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				D96030F024627C3800BB0C45 /* in.txt in CopyFiles */,
+				D96030F124627C3800BB0C45 /* plants in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D98B99B9241A98D400749F71 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -27,6 +40,8 @@
 /* Begin PBXFileReference section */
 		D96030E32460BD4A00BB0C45 /* CommandObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommandObject.cpp; sourceTree = SOURCE_ROOT; };
 		D96030E42460BD4A00BB0C45 /* CommandObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandObject.h; sourceTree = SOURCE_ROOT; };
+		D96030EE24627C3800BB0C45 /* in.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = in.txt; path = "../../../../Spring 2019/OOP/HW1/abdelhafizHW01/in.txt"; sourceTree = "<group>"; };
+		D96030EF24627C3800BB0C45 /* plants */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = plants; path = "../../../../Spring 2019/OOP/HW1/abdelhafizHW01/plants"; sourceTree = "<group>"; };
 		D98B99BB241A98D400749F71 /* Linux-Shell */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Linux-Shell"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D98B99C5241A992900749F71 /* Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Functions.h; sourceTree = SOURCE_ROOT; };
 		D98B99C6241A992900749F71 /* Main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Main.cpp; sourceTree = SOURCE_ROOT; };
@@ -48,6 +63,8 @@
 		D98B99B2241A98D400749F71 = {
 			isa = PBXGroup;
 			children = (
+				D96030EE24627C3800BB0C45 /* in.txt */,
+				D96030EF24627C3800BB0C45 /* plants */,
 				D98B99BD241A98D400749F71 /* Linux-Shell */,
 				D98B99BC241A98D400749F71 /* Products */,
 			);
@@ -84,6 +101,7 @@
 				D98B99B7241A98D400749F71 /* Sources */,
 				D98B99B8241A98D400749F71 /* Frameworks */,
 				D98B99B9241A98D400749F71 /* CopyFiles */,
+				D96030ED24627C1100BB0C45 /* CopyFiles */,
 			);
 			buildRules = (
 			);

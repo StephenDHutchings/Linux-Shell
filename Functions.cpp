@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 #include <array>
+#include <fcntl.h>
 
 using namespace std;
 
@@ -58,7 +59,7 @@ queue<CommandObject> InputParser(string typed_string) {
 
 string FindBinary(const char* command) {
     /*
-     Takes a command string that the user typed (eg: ls) and returns the path of the corresponding binary (eg: /bin/ls)
+     Finds corresponding binary to a user's command input
      
      written with help of: https://stackoverflow.com/questions/478898/how-do-i-execute-a-command-and-get-the-output-of-the-command-within-c-using-po
      
@@ -91,25 +92,39 @@ void TheCommands(queue<CommandObject>& commands){
      Ouput: Executes a command, and implements forking for that command
      */
     
-    pid_t child_pid; //process id for the child process that will execute the command
-    int status;
+    pid_t child_pid, pipe_child_pid; //process id for the child process that will execute the command
     CommandObject a_command;
     a_command = commands.front();
     commands.pop();
+    
+    // Preparing for pipes
+    bool to_pipe = !commands.empty();
+    int pipefd[2];
     
     //to convert the command to a char to be passed to execve
     char* args[a_command.arguments.size() + 1];
     
     for (int i = 0; i < a_command.arguments.size(); i++) {
-      args[i] = (char*) a_command.arguments[i].c_str();
+        args[i] = (char*) a_command.arguments[i].c_str();
     }
     
     args[a_command.arguments.size()] = NULL;
     
     if(a_command.main_command == "/usr/bin/cd"){
-            chdir(args[1]);
-            return;
+        chdir(args[1]);
+        return;
+    }
+    
+    if(a_command.main_command == "/usr/bin/which") { // special handling for which command, execve doesn't play nice
+        stringstream which_command;
+        which_command << "which";
+        for (int i = 1; i < a_command.arguments.size(); i++) {
+            which_command << " " << a_command.arguments[i];
         }
+        char which_array[which_command.str().length()];
+        strcpy(which_array, which_command.str().c_str());
+        system((char *) which_array);
+    }
     
     //forking the process
     child_pid = fork();
@@ -118,24 +133,57 @@ void TheCommands(queue<CommandObject>& commands){
     if(child_pid < 0){
         cout << "Forking failed" << endl;
     }
-     
+    
     //when the fork is successful
     else if(child_pid == 0) {
-  
-        
-        if(a_command.main_command == "/bin/help" || a_command.main_command == "/bin/Help"){
-            HelpCommand();
+        if (to_pipe) {
+            close(pipefd[0]);
+            dup2(pipefd[1], STDOUT_FILENO);
+            close(pipefd[1]);
+        } else if (a_command.output_to_file || a_command.input_from_file) { // redirecting output to file
+            if (a_command.input_from_file) { // read from file, <
+                int fd;
+                fd = open(a_command.filename.c_str(), O_RDONLY); // Setting input from file
+                dup2(fd, STDIN_FILENO);
+                close(fd);
+            } else { // output to file, >
+                int fd;
+                fd = open(a_command.filename.c_str(), O_RDWR | O_CREAT, S_IRUSR | S_IWUSR); // Setting output to file
+                dup2(fd, STDOUT_FILENO);
+                close(fd);
+            }
         }
-        
-        else if(execve(a_command.main_command.c_str(), args, NULL) < 0)
-            {cout << "Could not execute command" << endl;}
+        if(execve(a_command.main_command.c_str(), args, NULL) < 0)
+        {cout << "Could not execute command" << endl;}
     }
     
     else {
+        if (to_pipe) {
+            pipe_child_pid = fork();
+            if (pipe_child_pid == 0) {
+                close(pipefd[1]);
+                dup2(pipefd[0], STDIN_FILENO);
+                close(pipefd[0]);
+                
+                // Executing
+                CommandObject pipe_command = commands.front();
+                char* pipe_args[pipe_command.arguments.size() + 1];
+                
+                for (int i = 0; i < pipe_command.arguments.size(); i++) {
+                    pipe_args[i] = (char*) pipe_command.arguments[i].c_str();
+                }
+                pipe_args[pipe_command.arguments.size()] = NULL;
+                
+                if (execve(pipe_command.main_command.c_str(), pipe_args, NULL) < 0) {
+                    cout << "Piped command could not execute" << endl;
+                }
+            } else {
+                wait(NULL);
+            }
+        }
         wait(NULL);
         return;
     }
-
 }
 
 string StartShell(){
