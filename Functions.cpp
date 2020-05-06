@@ -186,7 +186,7 @@ void TheCommands(queue<CommandObject>& commands){
     }
 }
 
-string StartShell(){
+void StartShell(){
     string user_input = " ";
     
     cout << "> Welcome to TutorialShell!" << endl;
@@ -194,11 +194,11 @@ string StartShell(){
     cout << "> Otherwise to use this program as a typical Linux shell, enter the command start" << endl;
     cout << "> Enter the command exit at anytime to quit" << endl;
     cout << "> To view a helpful list of basic commands, enter help within the shell" << endl;
-    cout << "> "; 
+    /*cout << "> ";
     
     getline(cin, user_input);
     cout << endl;
-    return user_input;
+    return user_input; */
 }
 
 void Shell()
@@ -211,24 +211,28 @@ void Shell()
     while (!done) {
         cout << "> ";
         getline(cin, user_input);
-        if (user_input != "exit" && user_input != "Exit" && user_input != ""){
-            
-            if(user_input == "help" || user_input == "Help"){
-                HelpCommand();
+        if (user_input != "tutorial" && user_input!= "Tutorial") {
+            if (user_input != "exit" && user_input != "Exit" && user_input != ""){
+                
+                if(user_input == "help" || user_input == "Help"){
+                    HelpCommand();
+                }
+                
+                else{
+                    commands = InputParser(user_input);
+                    //                a_command = commands.front();
+                    TheCommands(commands);
+                }
+            } else if(user_input == "") {
+                cin.clear();
+                continue;
             }
             
-            else{
-                commands = InputParser(user_input);
-//                a_command = commands.front();
-                TheCommands(commands);
+            else {
+                done = true;
             }
-        } else if(user_input == "") {
-            cin.clear();
-            continue;
-        }
-        
-        else {
-            done = true;
+        } else {
+            TutorialStart();
         }
     }
     
@@ -299,7 +303,7 @@ void TutorialContinue(){
     cout << "> This tutorial will show the basic command, as well as an example with arguments" << endl;
     cout << "> To see the files and subdirectories of the current directory, enter the command ls" << endl << "> ";
     
-    user_input = " ";
+    user_input = "";
     
     getline(cin, user_input);
     

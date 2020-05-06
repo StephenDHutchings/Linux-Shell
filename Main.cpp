@@ -15,14 +15,15 @@ CommandObject a_command;
 
 int main()
 {
-    user_input = StartShell();
+    StartShell();
 
-    if(user_input == "tutorial" || user_input == "Tutorial"){
-        TutorialStart();}
-
-    else{
-        Shell();
-    }
+//    if(user_input == "tutorial" || user_input == "Tutorial"){
+//        TutorialStart();}
+//
+//    else{
+//        Shell();
+//    }
+    Shell();
 
     return 0;
 }
